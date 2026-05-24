@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT Network Matrix // Target: RichElle61095</title>
+    <style>
+        :root {
+            --bg-main: #08090c;
+            --panel-bg: #11131a;
+            --panel-border: #1f2330;
+            --accent-cyan: #00e5ff;
+            --accent-green: #39ff14;
+            --accent-magenta: #ff007f;
+            --accent-orange: #ff9100;
+            --text-light: #f0f2f5;
+            --text-dim: #6c7385;
+            --field-bg: #161922;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'SF Mono', Consolas, 'Courier New', monospace;
+            background-color: var(--bg-main);
+            color: var(--text-light);
+            padding: 20px;
+            font-size: 13px;
+        }
+
+        header {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-left: 4px solid var(--accent-orange);
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 460px 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 1100px) {
+            .main-layout { grid-template-columns: 1fr; }
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .panel-heading {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--accent-orange);
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .target-box {
+            border: 1px solid var(--panel-border);
+            border-radius: 4px;
+            background: rgba(255,255,255,0.01);
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .target-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .t-name { color: #fff; font-size: 13px; }
+        .t-type { font-size: 10px; padding: 1px 5px; border-radius: 2px; text-transform: uppercase; }
+        .type-new { background: rgba(255, 145, 0, 0.1); color: var(--accent-orange); }
+        .type-core { background: rgba(255, 0, 127, 0.1); color: var(--accent-magenta); }
+
+        .dork-line {
+            background: var(--field-bg);
+            border-radius: 3px;
+            padding: 6px 10px;
+            margin-bottom: 6px;
+            border-left: 2px solid var(--panel-border);
+        }
+
+        .dork-desc { color: var(--text-dim); font-size: 11px; margin-bottom: 2px; }
+        .dork-val { color: #fff; word-break: break-all; font-size: 12px; }
+
+        .btn {
+            background: transparent;
+            border: 1px solid var(--accent-orange);
+            color: var(--accent-orange);
+            padding: 3px 8px;
+            font-size: 11px;
+            border-radius: 2px;
+            cursor: pointer;
+            margin-top: 5px;
+            font-family: inherit;
+        }
+
+        .btn:hover { background: rgba(255, 145, 0, 0.1); }
+        .btn-cyan { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+        .btn-cyan:hover { background: rgba(0, 229, 255, 0.1); }
+
+        /* Timeline Node Styles */
+        .feed-list { display: flex; flex-direction: column; gap: 12px; }
+        .feed-node {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 4px;
+            padding: 12px;
+        }
+        .node-header {
+            display: flex; justify-content: space-between; color: var(--text-dim); font-size: 11px; margin-bottom: 8px;
+        }
+        .node-direction { font-size: 13px; font-weight: bold; margin-bottom: 6px; }
+        .node-text { background: rgba(0,0,0,0.15); padding: 8px 12px; border-radius: 3px; font-style: italic; margin-bottom: 8px; }
+        
+        .tags-wrapper { display: flex; flex-wrap: wrap; gap: 4px; }
+        .node-tag {
+            font-size: 10px; padding: 1px 5px; border-radius: 2px; background: #161922; border: 1px solid var(--panel-border);
+        }
+        .tag-alert { border-color: var(--accent-orange); color: var(--accent-orange); }
+        .tag-core { border-color: var(--accent-magenta); color: var(--accent-magenta); }
+
+        /* Input Controls */
+        .form-group { margin-bottom: 10px; }
+        label { display: block; color: var(--text-dim); margin-bottom: 3px; font-size: 11px; }
+        input, textarea, select {
+            width: 100%; background: var(--field-bg); border: 1px solid var(--panel-border); color: #fff; padding: 6px; font-family: inherit;
+        }
+        .submit-btn {
+            width: 100%; background: var(--accent-orange); color: #000; font-weight: bold; padding: 8px; border: none; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-title">
+        <span>OSINT MULTI-TARGET EXTENSION MATRIX</span>
+        <span style="color: var(--accent-orange)">TARGET SECTOR: RICHELLE61095</span>
+    </div>
+</header>
+
+<div class="main-layout">
+    
+    <!-- LEFT PANEL: TARGET MATRIX -->
+    <div>
+        <div class="panel">
+            <div class="panel-heading">Gekoppelde Target Matrix & Pivot Dorks</div>
+            
+            <!-- NEW TARGET: RichElle61095 -->
+            <div class="target-box" style="border-color: var(--accent-orange);">
+                <div class="target-meta">
+                    <span class="t-name">@RichElle61095</span>
+                    <span class="t-type type-new">Nieuw Pivot-Punt</span>
+                </div>
+                <div class="dork-line">
+                    <div class="dork-desc">Directe Microblog Interactie-stream</div>
+                    <div class="dork-val">nitter.net/RichElle61095</div>
+                    <button class="btn" onclick="window.open('https://nitter.net/RichElle61095', '_blank')">Open Nitter Stream</button>
+                </div>
+                <div class="dork-line">
+                    <div class="dork-desc">Netwerkcohesie & Cross-Mentions</div>
+                    <div class="dork-val">"RichElle61095" AND ("RebelWithout2" OR "PyroBatNL")</div>
+                    <button class="btn" onclick="executeDork('%22RichElle61095%22+AND+(%22RebelWithout2%22+OR+%22PyroBatNL%22)')">Scan Netwerkkoppeling</button>
+                </div>
+                <div class="dork-line">
+                    <div class="dork-desc">Global Username Correlaties (Fora / ID-leak)</div>
+                    <div class="dork-val">"RichElle61095" -site:twitter.com -site:x.com</div>
+                    <button class="btn" onclick="executeDork('%22RichElle61095%22+-site%3Atwitter.com+-site%3Ax.com')">Brede Voetafdruk Scan</button>
+                </div>
+            </div>
+
+            <!-- CORE TARGETS REFERENCE -->
+            <div class="target-box">
+                <div class="target-meta">
+                    <span class="t-name">Core Network Hubs</span>
+                    <span class="t-type type-core">Referentie</span>
+                </div>
+                <div class="dork-line">
+                    <div class="dork-desc">Gezamenlijke Mentions Tijdlijn</div>
+                    <div class="dork-val">@pyrobatnl OR @RebelWithout2</div>
+                    <button class="btn btn-cyan" onclick="executeDork('%40pyrobatnl+OR+%40RebelWithout2')">Scan Core Cluster</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOG FORM -->
+        <div class="panel">
+            <div class="panel-heading">Interstitiële Data Logging</div>
+            <form id="matrixLogForm">
+                <div class="form-group">
+                    <label>Bron Node</label>
+                    <input type="text" id="logSrc" value="@RichElle61095" required>
+                </div>
+                <div class="form-group">
+                    <label>Target Node</label>
+                    <input type="text" id="logDst" placeholder="bijv. @RebelWithout2 of @PyroBatNL" required>
+                </div>
+                <div class="form-group">
+                    <label>Communicatie-inhoud (Raw String)</label>
+                    <textarea id="logTxt" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Voeg toe aan Relatie-Graph</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL: GRAPH CHRONOLOGY -->
+    <div>
+        <div class="panel" style="background: transparent; border: none; padding: 0;">
+            <div class="panel-heading">Social Graph Relaties & Cluster Chronologie</div>
+            
+            <div class="feed-list" id="clusterTimeline">
+                
+                <!-- Projected Node: RichElle Cluster Dynamic -->
+                <div class="feed-node" style="border-left: 3px solid var(--accent-orange);">
+                    <div class="node-header">
+                        <span>Systeemstatus: Hypothese / Cross-Referentie</span>
+                        <span>ID: TRG-RIC-004</span>
+                    </div>
+                    <div class="node-direction">
+                        <span style="color: var(--accent-orange)">@RichElle61095</span>
+                        <span style="color: var(--text-dim)"> &harr; </span>
+                        <span style="color: var(--accent-magenta)">@RebelWithout2 &rarr; @PyroBatNL</span>
+                    </div>
+                    <div class="node-text">
+                        Analyse-notitie: Target 'RichElle61095' vertoont directe of indirecte interactiekenmerken binnen het gedefinieerde cluster van RebelWithout2 en PyroBatNL. Vermoedelijke betrokkenheid bij gezamenlijke discussietopic-structuren of co-tagging incidenten (Mevrouw G / Grok AI Traces).
+                    </div>
+                    <div class="tags-wrapper">
+                        <span class="node-tag tag-alert">Cluster: RichElle Link</span>
+                        <span class="node-tag">Relatie: Potentiële Sockpuppet / Co-Actor</span>
+                        <span class="node-tag">Gedragspatroon: Monitor</span>
+                    </div>
+                </div>
+
+                <!-- Existing Base Core Node -->
+                <div class="feed-node" style="border-left: 3px solid var(--accent-magenta);">
+                    <div class="node-header">
+                        <span>Platform: X / Nitter</span>
+                        <span>ID: TRG-REB-001</span>
+                    </div>
+                    <div class="node-direction">
+                        <span style="color: var(--accent-magenta)">@RebelWithout2</span>
+                        <span style="color: var(--text-dim)"> &rarr; </span>
+                        <span style="color: var(--accent-cyan)">@PyroBatNL</span>
+                    </div>
+                    <div class="node-text">
+                        "@PyroBatNL wat is de achterliggende gedachte bij deze irritante vrouw ? Ze draait zaken om en blijft mij en anderen maar taggen. Graag geholpen door grok zelfs..."
+                    </div>
+                    <div class="tags-wrapper">
+                        <span class="node-tag tag-core">Core Cluster</span>
+                        <span class="node-tag">Stylometrie: Spatie voor leesteken</span>
+                        <span class="node-tag">Conflict: Mevrouw G</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function executeDork(q) { window.open('https://www.google.com/search?q=' + q, '_blank'); }
+    
+    document.getElementById('matrixLogForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const src = document.getElementById('logSrc').value;
+        const dst = document.getElementById('logDst').value;
+        const txt = document.getElementById('logTxt').value;
+        const genId = "TRG-LOG-" + Math.floor(100 + Math.random() * 899);
+        
+        const node = document.createElement('div');
+        node.className = 'feed-node';
+        node.style.borderLeft = '3px solid var(--accent-green)';
+        node.style.marginTop = '12px';
+        node.innerHTML = `
+            <div class="node-header"><span>Platform: Handmatige Injectie</span><span>ID: ${genId}</span></div>
+            <div class="node-direction"><span style="color:var(--accent-green)">${src}</span><span style="color:var(--text-dim)"> &rarr; </span><span style="color:var(--accent-cyan)">${dst}</span></div>
+            <div class="node-text">"${txt}"</div>
+            <div class="tags-wrapper"><span class="node-tag">Handmatig Log</span><span class="node-tag">Netwerk-Uitbreiding</span></div>
+        `;
+        document.getElementById('clusterTimeline').insertBefore(node, document.getElementById('clusterTimeline').firstChild);
+        document.getElementById('logTxt').value = '';
+    });
+</script>
+
+</body>
+</html>

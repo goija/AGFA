@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGFA Uitingen Dossier</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #0f766e;
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --border: #cbd5e1;
+            --text-main: #334155;
+            --text-light: #64748b;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .form-card, .uiting-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .help-text {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.2rem;
+            display: block;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #1e40af;
+        }
+
+        /* Styling voor gegenereerde kaarten */
+        .uiting-card h3 {
+            margin-top: 0;
+            color: var(--secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .quote-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            font-style: italic;
+            margin: 1rem 0;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Nieuwe Uiting Registreren (AGFA-Toetsing)</h2>
+    
+    <div class="form-card">
+        <form id="uitingForm">
+            <div class="form-group">
+                <label for="uitingId">Uiting #</label>
+                <input type="number" id="uitingId" required placeholder="Bijv. 1">
+            </div>
+
+            <div class="meta-grid">
+                <div class="form-group">
+                    <label for="datum">Datum</label>
+                    <input type="date" id="datum" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="kanaal">Medium / Kanaal</label>
+                    <input type="text" id="kanaal" required placeholder="X/Twitter, LinkedIn, Blog, Interview, etc.">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="link">Link (optioneel)</label>
+                <input type="url" id="link" placeholder="https://...">
+            </div>
+
+            <div class="form-group">
+                <label for="citaat">Citaat</label>
+                <textarea id="citaat" rows="4" maxlength="1500" required placeholder="Voer de exacte tekst in..."></textarea>
+                <span class="help-text">Max 1.500 tekens. Gebruik exacte bewoordingen.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="context">Context</label>
+                <textarea id="context" rows="2" required placeholder="Aanleiding, op wie gericht, onderwerp..."></textarea>
+                <span class="help-text">1-3 zinnen ter duiding.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="verband">Verband met (voormalige) functie</label>
+                <div style="display: flex; gap: 10px;">
+                    <select id="verbandType" style="width: 30%;" required>
+                        <option value="">Kies type...</option>
+                        <option value="Direct">Direct</option>
+                        <option value="Indirect">Indirect</option>
+                        <option value="Geen">Geen</option>
+                    </select>
+                    <input type="text" id="verbandWaarom" style="width: 70%;" required placeholder="Waarom? (Korte toelichting)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="bereik">Bereik / Impact</label>
+                <input type="text" id="bereik" placeholder="Aantal volgers, views, media-aandacht, reacties...">
+            </div>
+
+            <button type="submit">Opslaan in dossier</button>
+        </form>
+    </div>
+
+    <h2>Dossier: Geregistreerde Uitingen</h2>
+    <div id="dossierContainer">
+        </div>
+</div>
+
+<script>
+    document.getElementById('uitingForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Voorkom dat de pagina herlaadt
+
+        // Haal de waarden op
+        const id = document.getElementById('uitingId').value;
+        const datum = document.getElementById('datum').value;
+        const kanaal = document.getElementById('kanaal').value;
+        const link = document.getElementById('link').value;
+        const citaat = document.getElementById('citaat').value;
+        const context = document.getElementById('context').value;
+        const verbandType = document.getElementById('verbandType').value;
+        const verbandWaarom = document.getElementById('verbandWaarom').value;
+        const bereik = document.getElementById('bereik').value || 'Onbekend';
+
+        // Maak veilige link HTML
+        const linkHtml = link ? `<a href="${link}" target="_blank" style="color: #1e3a8a;">Bekijk bron</a>` : 'Geen link beschikbaar';
+
+        // HTML voor de nieuwe kaart
+        const cardHtml = `
+            <div class="uiting-card">
+                <h3>Uiting #${id} <span class="badge">${kanaal} | ${datum}</span></h3>
+                
+                <div class="quote-box">
+                    "${citaat}"
+                </div>
+                
+                <div class="meta-grid">
+                    <div class="meta-item">
+                        <strong>Context</strong>
+                        ${context}
+                    </div>
+                    <div class="meta-item">
+                        <strong>Verband met functie</strong>
+                        <span style="color: ${verbandType === 'Direct' ? '#dc2626' : (verbandType === 'Indirect' ? '#ca8a04' : '#16a34a')}; font-weight: bold;">[${verbandType}]</span> ${verbandWaarom}
+                    </div>
+                    <div class="meta-item">
+                        <strong>Bereik/Impact</strong>
+                        ${bereik}
+                    </div>
+                    <div class="meta-item">
+                        <strong>URL / Bron</strong>
+                        ${linkHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Voeg de kaart toe aan de container
+        const container = document.getElementById('dossierContainer');
+        container.insertAdjacentHTML('afterbegin', cardHtml);
+
+        // Optioneel: reset het formulier
+        this.reset();
+        
+        // Zet focus terug op Uiting ID voor snelle invoer
+        document.getElementById('uitingId').focus();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theoretische AGFA-Toetsing</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #0f766e;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary);
+            margin-top: 30px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 5px;
+        }
+
+        .intro {
+            background-color: var(--bg-light);
+            padding: 15px 20px;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+        }
+
+        .disclaimer {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .criterion-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #ffffff;
+        }
+
+        .criterion-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .criterion-title span {
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+
+        .toetsen {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .indicator-box {
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .risk-high {
+            background-color: #fef2f2;
+            border-left: 4px solid var(--danger);
+        }
+
+        .risk-high h4 { color: var(--danger); margin: 0 0 10px 0; }
+
+        .risk-low {
+            background-color: #f0fdf4;
+            border-left: 4px solid var(--success);
+        }
+
+        .risk-low h4 { color: #166534; margin: 0 0 10px 0; }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li { margin-bottom: 8px; }
+
+        .scorekaart {
+            background-color: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .score-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85em;
+            width: 120px;
+            text-align: center;
+            margin-right: 15px;
+            color: white;
+        }
+
+        .bg-low { background-color: var(--success); }
+        .bg-mid { background-color: var(--warning); color: #000; }
+        .bg-high { background-color: #f97316; }
+        .bg-critical { background-color: var(--danger); }
+
+        .mitigaties ul {
+            list-style-type: square;
+            color: var(--secondary);
+        }
+
+        .mitigaties li span { color: var(--text-dark); }
+        
+        .action-box {
+            background-color: #e0f2fe;
+            border: 1px dashed #0284c7;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Theoretische AGFA-toetsing</h1>
+    
+    <div class="intro">
+        <strong>Kader (NL):</strong> De AGFA hanteert zes gezichtspunten om publieke uitingen van (voormalige) ambtenaren te wegen in het licht van grondrechten (m.n. vrijheid van meningsuiting) versus eisen van neutraliteit, onpartijdigheid, integriteit en het goed functioneren van de openbare dienst.
+        <p class="disclaimer"><strong>Let op:</strong> Zonder specifieke citaten/uitingen blijft dit generiek en “theoretisch”; het is geen juridisch oordeel.</p>
+    </div>
+
+    <div class="criterion-card">
+        <div class="criterion-title"><span>1</span> Relatie met de functie / ambtelijke rol</div>
+        <div class="toetsen">Te toetsen: Is de uiting inhoudelijk of contextueel gekoppeld aan de (voormalige) functie, beleidsterrein, dienst, of aan informatie/gezag ontleend aan de functie?</div>
+        <div class="grid-2">
+            <div class="indicator-box risk-high">
+                <h4>Indicatoren (zwaarder risico)</h4>
+                <ul>
+                    <li>Spreken “als insider” (“wij bij ministerie X…”, “toen ik daar zat…”), titel/insigne in bio, verwijzing naar dossiers.</li>
+                    <li>Uiting gaat over eigen organisatie/ketenpartners/toezichtobjecten.</li>
+                </ul>
+            </div>
+            <div class="indicator-box risk-low">
+                <h4>Milderend</h4>
+                <ul>
+                    <li>Duidelijke scheiding privé/functie, geen functieverwijzingen, ander onderwerp dan werkterrein.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="criterion-card">
+        <div class="criterion-title"><span>2</span> Onderwerp: overheidstaken, democratische rechtsorde en grondrechten</div>
+        <div class="toetsen">Te toetsen: Raakt de uiting aan kernwaarden van de democratische rechtsstaat (gelijke behandeling, non-discriminatie, geweldsmonopolie, rechterlijke onafhankelijkheid, persvrijheid), of aan politiek-bestuurlijke legitimiteit?</div>
+        <div class="grid-2">
+            <div class="indicator-box risk-high">
+                <h4>Indicatoren (zwaarder risico)</h4>
+                <ul>
+                    <li>Oproepen tot ondermijning van instituties, discriminatoire of uitsluitende standpunten.</li>
+                    <li>Delegitimeren van rechters, verkiezingen, of onafhankelijke media op een manier die vertrouwen structureel schaadt.</li>
+                </ul>
+            </div>
+            <div class="indicator-box risk-low">
+                <h4>Milderend</h4>
+                <ul>
+                    <li>Kritiek op beleid is toegestaan, zeker als feitelijk, proportioneel en gericht op verbetering.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="criterion-card">
+        <div class="criterion-title"><span>3</span> Toon, vorm en context (proportionaliteit en zorgvuldigheid)</div>
+        <div class="toetsen">Te toetsen: Is de uiting feitelijk onderbouwd, zorgvuldig geformuleerd, en proportioneel in taalgebruik? In welke setting (podium, social media, demonstratie) en met welk bereik?</div>
+        <div class="grid-2">
+            <div class="indicator-box risk-high">
+                <h4>Indicatoren (zwaarder risico)</h4>
+                <ul>
+                    <li>Scheldpartijen, intimidatie, insinuaties zonder bewijs, doxing, suggestie van geweld.</li>
+                    <li>Hardnekkig verspreiden van onjuiste informatie na correcties.</li>
+                </ul>
+            </div>
+            <div class="indicator-box risk-low">
+                <h4>Milderend</h4>
+                <ul>
+                    <li>Nuancerende taal, bronvermelding, ruimte voor tegenspraak, correcties bij fouten.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="criterion-card">
+        <div class="criterion-title"><span>4</span> Gezag, vertrouwen en schijn van partijdigheid/neutraliteit</div>
+        <div class="toetsen">Te toetsen: Kan het publiek redelijkerwijs denken dat de uiting het standpunt van “de overheid” weerspiegelt, of dat de (voormalige) ambtenaar niet onpartijdig is/was in de uitoefening?</div>
+        <div class="grid-2">
+            <div class="indicator-box risk-high">
+                <h4>Indicatoren (zwaarder risico)</h4>
+                <ul>
+                    <li>Politieke campagnevoering of activisme dat direct raakt aan eigen beleidsdomein of doelgroep.</li>
+                    <li>Uiting die burgers/bedrijven/organisaties die onder de overheid vallen wegzet of bevoordeelt.</li>
+                </ul>
+            </div>
+            <div class="indicator-box risk-low">
+                <h4>Milderend</h4>
+                <ul>
+                    <li>Expliciete disclaimer (“op persoonlijke titel”), afstand tot beleidsdomein, beperkte zichtbaarheid.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="criterion-card">
+        <div class="criterion-title"><span>5</span> Integriteit, vertrouwelijkheid en (schijn van) misbruik van positie</div>
+        <div class="toetsen">Te toetsen: Is er gebruik van niet-openbare informatie, schending van geheimhouding, belangenverstrengeling, of het “meenemen” van ambtelijk gezag/relaties voor privédoelen?</div>
+        <div class="grid-2">
+            <div class="indicator-box risk-high">
+                <h4>Indicatoren (zwaarder risico)</h4>
+                <ul>
+                    <li>Delen van interne stukken, operationele details, persoonsgegevens, of vertrouwelijke besluitvorming.</li>
+                    <li>Lobby/verdienmodel gekoppeld aan voormalig dossier, of “dreigen” met ambtelijke kennis/kanalen.</li>
+                </ul>
+            </div>
+            <div class="indicator-box risk-low">
+                <h4>Milderend</h4>
+                <ul>
+                    <li>Uitsluitend publieke bronnen, duidelijke compliance (geen dossiers, geen interne info).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="criterion-card">
+        <div class="criterion-title"><span>6</span> Effect op functioneren van dienst/organisatie en werkrelaties</div>
+        <div class="toetsen">Te toetsen: Leidt de uiting (voorzienbaar) tot verstoring van samenwerking, gezagsverhoudingen, uitvoerbaarheid, veiligheid van collega’s, of vertrouwen in de organisatie?</div>
+        <div class="grid-2">
+            <div class="indicator-box risk-high">
+                <h4>Indicatoren (zwaarder risico)</h4>
+                <ul>
+                    <li>Aanwakkeren van wantrouwen jegens eigen dienst met concrete gevolgen (bedreigingen, obstructie, weigering van medewerking).</li>
+                    <li>Aanhoudende escalatie ondanks interne/maatschappelijke context (crisis, spanningen).</li>
+                </ul>
+            </div>
+            <div class="indicator-box risk-low">
+                <h4>Milderend</h4>
+                <ul>
+                    <li>Beperkte impact, incidenteel, of duidelijk gericht op maatschappelijk debat zonder persoonsgerichte aanvallen.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h2>Praktische uitkomstvorm (AGFA-“scorekaart”)</h2>
+    <div class="scorekaart">
+        <p>Gebruik per criterium één van deze kwalificaties, met korte motivering op basis van citaten:</p>
+        <div class="score-item"><span class="badge bg-low">Laag risico</span> Past binnen grondrechtelijke ruimte.</div>
+        <div class="score-item"><span class="badge bg-mid">Midden risico</span> Toelaatbaar maar gevoelig; vraagt mitigatie/afstand.</div>
+        <div class="score-item"><span class="badge bg-high">Hoog risico</span> Grote kans op spanning met ambtelijke normen; mogelijk maatregelen.</div>
+        <div class="score-item"><span class="badge bg-critical">Zeer hoog risico</span> Indicaties van integriteitsschending/vertrouwelijkheid/oproepen tot ondermijning.</div>
+    </div>
+
+    <h2>Mitigaties die de "druk verlagen"</h2>
+    <div class="mitigaties">
+        <ul>
+            <li><span>Duidelijke <strong>privé-disclaimer</strong> + verwijderen van functietitel/overheidslogo.</span></li>
+            <li><span><strong>Feitelijke onderbouwing</strong> en correcties; vermijden van persoonsgerichte aanvallen.</span></li>
+            <li><span>Vermijden van uitingen over <strong>eigen (voormalig) dossier/keten</strong>.</span></li>
+            <li><span><strong>Geen interne info</strong>; geen suggestie van spreken namens “de overheid”.</span></li>
+        </ul>
+    </div>
+
+    <div class="action-box">
+        <h3>Een concrete casus toetsen?</h3>
+        <p>Plak (1) 5–15 representatieve publieke uitingen (citaten/links/fragmenten), (2) de (voormalige) functie + periode + domein, en (3) het platform/bereik. Dan kan ik dezelfde zes criteria invullen als <strong>concrete AGFA-matrix</strong> met kwalificatie per criterium en korte onderbouwing.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
